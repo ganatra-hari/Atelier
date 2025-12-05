@@ -44,7 +44,15 @@ app.use((req, res) => {
 
 // --- 5. START SERVER ---
 // Add this line to debug
-console.log("DEBUG: My Mongo URL is:", process.env.MONGO_URL); 
+// --- DEBUGGING BLOCK ---
+console.log("--------------------------------------------------");
+console.log("DEBUG: Checking Env Var...");
+console.log("MONGO_URL exists?", process.env.MONGO_URL ? "YES" : "NO");
+if (process.env.MONGO_URL) {
+    console.log("First 10 chars:", process.env.MONGO_URL.substring(0, 10)); // Safe print
+}
+console.log("--------------------------------------------------");
+// -----------------------
 
 ConnectionDB(process.env.MONGO_URL || 'mongodb://127.0.0.1:27017/Shopping_DB')
   .then(() => {
