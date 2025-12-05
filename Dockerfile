@@ -1,18 +1,20 @@
-# Use a standard Node image
+# Use a lightweight Node image
 FROM node:18-alpine
 
-# Set the working directory
+# Set working directory
 WORKDIR /app
 
-# Copy package files and install dependencies
+# Copy package.json first (better for caching)
 COPY package*.json ./
+
+# Install dependencies
 RUN npm install
 
-# Copy the rest of your app code
+# Copy the rest of your app
 COPY . .
 
-# Expose the port (Render usually uses 10000, but adapts)
-EXPOSE 10000
+# Expose the port your app runs on (standard is 3000 or 10000)
+EXPOSE 3000
 
 # Start the app
 CMD ["npm", "start"]
