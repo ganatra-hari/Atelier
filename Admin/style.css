@@ -1,0 +1,33 @@
+
+  /* 1. The Main Table Setup */
+  .table {
+    width: 100%;             /* Fills the screen width */
+    border-collapse: collapse; /* Merges borders into single lines */
+    font-family: Arial, sans-serif; /* Cleaner font */
+    margin: 25px 0;          /* Adds space around the table */
+  }
+
+  /* 2. Adding Borders (The Grid Look) */
+  .table th, 
+  .table td {
+    border: 1px solid #dddddd; /* Grey border lines */
+    padding: 12px;             /* Space inside the cells */
+    text-align: left;          /* Align text to the left */
+  }
+
+  /* 3. Header Styling */
+  .table thead tr {
+    background-color: #333333; /* Dark background for header */
+    color: #ffffff;            /* White text for header */
+    font-weight: bold;
+  }
+
+  /* 4. Row Styling */
+  .table tbody tr:nth-child(even) {
+    background-color: #f3f3f3; /* Light grey for every other row (Zebra) */
+  }
+
+  /* 5. Hover Effect */
+  .table tbody tr:hover {
+    background-color: #ddd;    /* Highlights row when mouse hovers */
+  }
