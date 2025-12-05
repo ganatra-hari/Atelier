@@ -43,6 +43,9 @@ app.use((req, res) => {
 });
 
 // --- 5. START SERVER ---
+// Add this line to debug
+console.log("DEBUG: My Mongo URL is:", process.env.MONGO_URL); 
+
 ConnectionDB(process.env.MONGO_URL || 'mongodb://127.0.0.1:27017/Shopping_DB')
   .then(() => {
     console.log('Database Connected!');
