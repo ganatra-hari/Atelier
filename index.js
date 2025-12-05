@@ -4,7 +4,7 @@ const { ConnectionDB } = require('./connect');
 
 // Initialize App
 const app = ex();
-const port = 3001;
+const port = process.env.PORT || 3001;
 
 // Middleware
 app.use(ex.urlencoded({ extended: false }));
@@ -43,7 +43,7 @@ app.use((req, res) => {
 });
 
 // --- 5. START SERVER ---
-ConnectionDB('mongodb://127.0.0.1:27017/Shopping_DB')
+ConnectionDB(process.env.MONGO_URL || 'mongodb://127.0.0.1:27017/Shopping_DB')
   .then(() => {
     console.log('Database Connected!');
     app.listen(port, () => {
