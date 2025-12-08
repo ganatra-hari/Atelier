@@ -8,9 +8,13 @@
 
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://unpkg.com/lucide@latest"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@700&display=swap"
+        rel="stylesheet">
     <style>
-        body { font-family: 'Inter', sans-serif; }
+        body {
+            font-family: 'Inter', sans-serif;
+        }
     </style>
 </head>
 
@@ -30,7 +34,8 @@
             <main class="p-6 md:p-8 flex-grow">
                 <div class="flex justify-between items-center mb-6">
                     <h1 class="text-2xl font-bold text-gray-900">Product List</h1>
-                    <a href="/admin/addProduct" class="bg-gray-900 text-white px-4 py-2 rounded-md text-sm hover:bg-gray-800 flex items-center">
+                    <a href="/admin/addProduct"
+                        class="bg-gray-900 text-white px-4 py-2 rounded-md text-sm hover:bg-gray-800 flex items-center">
                         <i data-lucide="plus" class="w-4 h-4 mr-2"></i> Add Product
                     </a>
                 </div>
@@ -39,16 +44,27 @@
                     <table class="min-w-full divide-y divide-gray-200">
                         <thead class="bg-gray-50">
                             <tr>
-                                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">#</th>
-                                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Product Name</th>
-                                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Price</th>
-                                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Category</th>
-                                <th scope="col" class="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">Action</th>
+                                <th scope="col"
+                                    class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                    #</th>
+                                <th scope="col"
+                                    class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                    Product Name</th>
+                                <th scope="col"
+                                    class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                    Price</th>
+                                <th scope="col"
+                                    class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                    Category</th>
+                                <th scope="col"
+                                    class="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                    Action</th>
                             </tr>
                         </thead>
                         <tbody id="product-table-body" class="bg-white divide-y divide-gray-200">
                             <tr>
-                                <td colspan="5" class="px-6 py-4 text-center text-sm text-gray-500">Loading products...</td>
+                                <td colspan="5" class="px-6 py-4 text-center text-sm text-gray-500">Loading products...
+                                </td>
                             </tr>
                         </tbody>
                     </table>
@@ -63,18 +79,23 @@
     </div>
 
     <!-- PRODUCT INFO MODAL -->
-    <div id="product-modal" class="fixed inset-0 bg-black/50 z-50 hidden flex items-center justify-center backdrop-blur-sm transition-opacity duration-300">
-        <div class="bg-white rounded-xl shadow-2xl w-full max-w-4xl m-4 overflow-hidden transform transition-all scale-95 opacity-0" id="modal-content-wrapper">
+    <div id="product-modal"
+        class="fixed inset-0 bg-black/50 z-50 hidden flex items-center justify-center backdrop-blur-sm transition-opacity duration-300">
+        <div class="bg-white rounded-xl shadow-2xl w-full max-w-4xl m-4 overflow-hidden transform transition-all scale-95 opacity-0"
+            id="modal-content-wrapper">
             <div class="grid grid-cols-1 md:grid-cols-2">
                 <div class="h-64 md:h-auto bg-gray-100 relative">
-                    <img id="modal-img" src="" alt="Product" class="w-full h-full object-cover object-center absolute inset-0" onerror="this.src='https://placehold.co/600x400?text=No+Image'">
+                    <img id="modal-img" src="" alt="Product"
+                        class="w-full h-full object-cover object-center absolute inset-0"
+                        onerror="this.src='https://placehold.co/600x400?text=No+Image'">
                 </div>
                 <div class="p-8 relative">
                     <button id="close-modal-btn" class="absolute top-4 right-4 text-gray-400 hover:text-gray-600">
                         <i data-lucide="x" class="w-6 h-6"></i>
                     </button>
                     <div class="mb-4">
-                        <span id="modal-category" class="px-3 py-1 bg-gray-100 text-gray-600 rounded-full text-xs font-semibold uppercase tracking-wide">Category</span>
+                        <span id="modal-category"
+                            class="px-3 py-1 bg-gray-100 text-gray-600 rounded-full text-xs font-semibold uppercase tracking-wide">Category</span>
                     </div>
                     <h2 id="modal-title" class="text-3xl font-bold text-gray-900 mb-2">Product Name</h2>
                     <div class="flex items-center mb-4">
@@ -93,10 +114,12 @@
                         <p id="modal-description">No description available.</p>
                     </div>
                     <div class="flex gap-3">
-                        <button class="flex-1 bg-gray-900 text-white py-3 px-4 rounded-lg font-medium hover:bg-gray-800 transition-colors">
+                        <button
+                            class="flex-1 bg-gray-900 text-white py-3 px-4 rounded-lg font-medium hover:bg-gray-800 transition-colors">
                             Edit Product
                         </button>
-                        <button class="flex-1 bg-white border border-gray-300 text-gray-700 py-3 px-4 rounded-lg font-medium hover:bg-gray-50 transition-colors">
+                        <button
+                            class="flex-1 bg-white border border-gray-300 text-gray-700 py-3 px-4 rounded-lg font-medium hover:bg-gray-50 transition-colors">
                             View Analytics
                         </button>
                     </div>
@@ -136,7 +159,7 @@
 
         async function fetchProducts() {
             const tbody = document.getElementById('product-table-body');
-            
+
             // Mock Data Fallback (For when running in Preview Mode where API is inaccessible)
             const mockData = [
                 { _id: '101', name: 'Nike Air Max (Preview)', price: 12999, category: 'men', image: 'https://images.unsplash.com/photo-1542291026-7eec264c27ff' },
@@ -146,11 +169,11 @@
             try {
                 // 1. Fetch data from your API
                 const response = await fetch('/api/products');
-                
+
                 if (!response.ok) {
                     throw new Error("Failed to connect to API");
                 }
-                
+
                 allProducts = await response.json();
 
             } catch (error) {
@@ -170,42 +193,46 @@
             allProducts.forEach((product, index) => {
                 const tr = document.createElement('tr');
                 tr.classList.add('hover:bg-gray-50', 'transition-colors');
-                
-                // Fix image path
+
                 const imgSrc = fixImagePath(product.image);
                 const productId = product._id || index;
 
+                // CHANGED: 
+                // 1. "Edit" is now an <a> tag pointing to edit-product.html
+                // 2. Added .html to the link
                 tr.innerHTML = `
-                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">${index + 1}</td>
-                    <td class="px-6 py-4 whitespace-nowrap">
-                        <div class="flex items-center">
-                            <div class="h-10 w-10 flex-shrink-0 group relative">
-                                <img class="h-10 w-10 rounded-md object-cover bg-gray-100 transition-transform hover:scale-150" 
-                                     src="${imgSrc}" 
-                                     alt="" 
-                                     onerror="this.src='https://placehold.co/100?text=No+Img'">
-                            </div>
-                            <div class="ml-4">
-                                <div class="text-sm font-medium text-gray-900">${product.name}</div>
-                            </div>
-                        </div>
-                    </td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">₹${product.price}</td>
-                    <td class="px-6 py-4 whitespace-nowrap">
-                        <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-blue-100 text-blue-800 capitalize">${product.category}</span>
-                    </td>
-                    <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-                        <button onclick="openModal(${index})" class="text-blue-600 hover:text-blue-900 mr-3 font-semibold inline-flex items-center">
-                            <i data-lucide="info" class="w-4 h-4 mr-1"></i> Info
-                        </button>
-                        <button onclick="editProduct('${productId}')" class="text-indigo-600 hover:text-indigo-900 mr-3 font-semibold">
-                            Edit
-                        </button>
-                        <button onclick="deleteProduct('${productId}')" class="text-red-600 hover:text-red-900 font-semibold">
-                            Delete
-                        </button>
-                    </td>
-                `;
+        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">${index + 1}</td>
+        <td class="px-6 py-4 whitespace-nowrap">
+            <div class="flex items-center">
+                <div class="h-10 w-10 flex-shrink-0">
+                    <img class="h-10 w-10 rounded-md object-cover bg-gray-100" 
+                            src="${imgSrc}" 
+                            alt="" 
+                            onerror="this.src='https://placehold.co/100?text=No+Img'">
+                </div>
+                <div class="ml-4">
+                    <div class="text-sm font-medium text-gray-900">${product.name}</div>
+                </div>
+            </div>
+        </td>
+        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">₹${product.price}</td>
+        <td class="px-6 py-4 whitespace-nowrap">
+            <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-blue-100 text-blue-800 capitalize">${product.category}</span>
+        </td>
+        <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
+            <button onclick="openModal(${index})" class="text-blue-600 hover:text-blue-900 mr-3 font-semibold inline-flex items-center">
+                <i data-lucide="info" class="w-4 h-4 mr-1"></i> Info
+            </button>
+            
+            <a href="/admin/edit-product.html?id=${productId}" class="text-indigo-600 hover:text-indigo-900 mr-3 font-semibold inline-flex items-center">
+                <i data-lucide="edit" class="w-4 h-4 mr-1"></i> Edit
+            </a>
+
+            <button onclick="deleteProduct('${productId}')" class="text-red-600 hover:text-red-900 font-semibold inline-flex items-center">
+                <i data-lucide="trash-2" class="w-4 h-4 mr-1"></i> Delete
+            </button>
+        </td>
+    `;
                 tbody.appendChild(tr);
             });
 
@@ -231,7 +258,7 @@
             }
         }
 
-       function editProduct(id) {
+        function editProduct(id) {
             // Redirect to the edit page with the product ID in the URL
             // Example: /admin/edit-product?id=65a...
             window.location.href = `/admin/edit-product?id=${id}`;
@@ -245,7 +272,7 @@
         function openModal(index) {
             const product = allProducts[index];
             if (!product) return;
-            
+
             const imgSrc = fixImagePath(product.image);
 
             document.getElementById('modal-img').src = imgSrc || 'https://placehold.co/600x400';

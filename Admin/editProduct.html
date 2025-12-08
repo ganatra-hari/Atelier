@@ -1,259 +1,259 @@
-<!DOCTYPE html>
-<html lang="en">
+    <!DOCTYPE html>
+    <html lang="en">
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Edit Product</title>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Edit Product</title>
 
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://unpkg.com/lucide@latest"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
-    <style>
-        body { font-family: 'Inter', sans-serif; }
-    </style>
-</head>
+        <script src="https://cdn.tailwindcss.com"></script>
+        <script src="https://unpkg.com/lucide@latest"></script>
+        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+        <style>
+            body { font-family: 'Inter', sans-serif; }
+        </style>
+    </head>
 
-<body class="bg-gray-50 text-gray-800">
+    <body class="bg-gray-50 text-gray-800">
 
-    <div class="flex h-screen overflow-hidden">
+        <div class="flex h-screen overflow-hidden">
 
-        <!-- SIDEBAR CONTAINER -->
-        <div id="sidebar-container"></div>
+            <!-- SIDEBAR CONTAINER -->
+            <div id="sidebar-container"></div>
 
-        <div class="flex-1 flex flex-col overflow-y-auto h-full relative">
+            <div class="flex-1 flex flex-col overflow-y-auto h-full relative">
 
-            <!-- HEADER CONTAINER -->
-            <div id="header-container"></div>
+                <!-- HEADER CONTAINER -->
+                <div id="header-container"></div>
 
-            <!-- MAIN CONTENT -->
-            <main class="p-6 md:p-8 flex-grow">
-                <div class="flex items-center mb-6">
-                    <a href="/admin/productList" class="mr-4 p-2 rounded-full hover:bg-gray-200 transition-colors">
-                        <i data-lucide="arrow-left" class="w-5 h-5 text-gray-600"></i>
-                    </a>
-                    <h1 class="text-2xl font-bold text-gray-900">Edit Product</h1>
-                </div>
+                <!-- MAIN CONTENT -->
+                <main class="p-6 md:p-8 flex-grow">
+                    <div class="flex items-center mb-6">
+                        <a href="/admin/productList" class="mr-4 p-2 rounded-full hover:bg-gray-200 transition-colors">
+                            <i data-lucide="arrow-left" class="w-5 h-5 text-gray-600"></i>
+                        </a>
+                        <h1 class="text-2xl font-bold text-gray-900">Edit Product</h1>
+                    </div>
 
-                <div class="bg-white rounded-lg shadow-sm border border-gray-200 p-6 md:p-8 max-w-3xl">
-                    <form id="edit-product-form" class="space-y-6">
-                        
-                        <!-- Hidden ID Field -->
-                        <input type="hidden" id="productId" name="id">
+                    <div class="bg-white rounded-lg shadow-sm border border-gray-200 p-6 md:p-8 max-w-3xl">
+                        <form id="edit-product-form" class="space-y-6">
+                            
+                            <!-- Hidden ID Field -->
+                            <input type="hidden" id="productId" name="id">
 
-                        <!-- Product Name -->
-                        <div>
-                            <label for="name" class="block text-sm font-medium text-gray-700 mb-1">Product Name</label>
-                            <input type="text" id="name" name="name" required
-                                class="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-gray-900 focus:border-transparent outline-none transition-all"
-                                placeholder="e.g. Nike Air Max">
-                        </div>
-
-                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                            <!-- Price -->
+                            <!-- Product Name -->
                             <div>
-                                <label for="price" class="block text-sm font-medium text-gray-700 mb-1">Price (₹)</label>
-                                <input type="number" id="price" name="price" required min="0" step="0.01"
+                                <label for="name" class="block text-sm font-medium text-gray-700 mb-1">Product Name</label>
+                                <input type="text" id="name" name="name" required
                                     class="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-gray-900 focus:border-transparent outline-none transition-all"
-                                    placeholder="0.00">
+                                    placeholder="e.g. Nike Air Max">
                             </div>
 
-                            <!-- Category -->
-                            <div>
-                                <label for="category" class="block text-sm font-medium text-gray-700 mb-1">Category</label>
-                                <select id="category" name="category"
-                                    class="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-gray-900 focus:border-transparent outline-none transition-all bg-white">
-                                    <option value="men">Men</option>
-                                    <option value="women">Women</option>
-                                    <option value="kids">Kids</option>
-                                    <option value="accessories">Accessories</option>
-                                </select>
-                            </div>
-                        </div>
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                <!-- Price -->
+                                <div>
+                                    <label for="price" class="block text-sm font-medium text-gray-700 mb-1">Price (₹)</label>
+                                    <input type="number" id="price" name="price" required min="0" step="0.01"
+                                        class="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-gray-900 focus:border-transparent outline-none transition-all"
+                                        placeholder="0.00">
+                                </div>
 
-                        <!-- Short Description -->
-                        <div>
-                            <label for="shortDescription" class="block text-sm font-medium text-gray-700 mb-1">Short Description</label>
-                            <input type="text" id="shortDescription" name="shortDescription" 
-                                class="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-gray-900 focus:border-transparent outline-none transition-all"
-                                placeholder="Brief summary...">
-                        </div>
-
-                        <!-- Full Description -->
-                        <div>
-                            <label for="description" class="block text-sm font-medium text-gray-700 mb-1">Description</label>
-                            <textarea id="description" name="description" rows="4"
-                                class="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-gray-900 focus:border-transparent outline-none transition-all"
-                                placeholder="Detailed product description..."></textarea>
-                        </div>
-
-                        <!-- Current Image Preview -->
-                        <div id="current-image-container" class="hidden mb-4">
-                            <label class="block text-sm font-medium text-gray-700 mb-1">Current Image</label>
-                            <img id="current-image" src="" alt="Current Product Image" class="h-32 w-32 object-cover rounded-md border border-gray-300">
-                        </div>
-
-                        <!-- Image Upload (Optional for Edit) -->
-                        <div>
-                            <label class="block text-sm font-medium text-gray-700 mb-1">Change Image (Optional)</label>
-                            <div class="mt-1 flex justify-center px-6 pt-5 pb-6 border-2 border-gray-300 border-dashed rounded-md hover:border-gray-400 transition-colors cursor-pointer relative">
-                                <div class="space-y-1 text-center">
-                                    <i data-lucide="image" class="mx-auto h-12 w-12 text-gray-400"></i>
-                                    <div class="flex text-sm text-gray-600">
-                                        <label for="image-upload" class="relative cursor-pointer bg-white rounded-md font-medium text-indigo-600 hover:text-indigo-500 focus-within:outline-none">
-                                            <span>Upload a new file</span>
-                                            <input id="image-upload" name="image" type="file" class="sr-only" accept="image/*">
-                                        </label>
-                                        <p class="pl-1">to replace current one</p>
-                                    </div>
-                                    <p class="text-xs text-gray-500">PNG, JPG, GIF up to 5MB</p>
-                                    <p id="file-name" class="text-sm text-gray-900 font-medium mt-2 hidden"></p>
+                                <!-- Category -->
+                                <div>
+                                    <label for="category" class="block text-sm font-medium text-gray-700 mb-1">Category</label>
+                                    <select id="category" name="category"
+                                        class="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-gray-900 focus:border-transparent outline-none transition-all bg-white">
+                                        <option value="men">Men</option>
+                                        <option value="women">Women</option>
+                                        <option value="kids">Kids</option>
+                                        <option value="accessories">Accessories</option>
+                                    </select>
                                 </div>
                             </div>
-                        </div>
 
-                        <!-- Submit Button -->
-                        <div class="flex justify-end pt-4">
-                            <a href="/admin/productList" class="mr-4 px-4 py-2 border border-gray-300 rounded-md text-sm font-medium text-gray-700 hover:bg-gray-50 flex items-center justify-center">
-                                Cancel
-                            </a>
-                            <button type="submit" class="px-6 py-2 bg-gray-900 text-white rounded-md text-sm font-medium hover:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-900 transition-all flex items-center">
-                                <i data-lucide="save" class="w-4 h-4 mr-2"></i> Update Product
-                            </button>
-                        </div>
+                            <!-- Short Description -->
+                            <div>
+                                <label for="shortDescription" class="block text-sm font-medium text-gray-700 mb-1">Short Description</label>
+                                <input type="text" id="shortDescription" name="shortDescription" 
+                                    class="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-gray-900 focus:border-transparent outline-none transition-all"
+                                    placeholder="Brief summary...">
+                            </div>
 
-                    </form>
-                </div>
+                            <!-- Full Description -->
+                            <div>
+                                <label for="description" class="block text-sm font-medium text-gray-700 mb-1">Description</label>
+                                <textarea id="description" name="description" rows="4"
+                                    class="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-gray-900 focus:border-transparent outline-none transition-all"
+                                    placeholder="Detailed product description..."></textarea>
+                            </div>
 
-            </main>
+                            <!-- Current Image Preview -->
+                            <div id="current-image-container" class="hidden mb-4">
+                                <label class="block text-sm font-medium text-gray-700 mb-1">Current Image</label>
+                                <img id="current-image" src="" alt="Current Product Image" class="h-32 w-32 object-cover rounded-md border border-gray-300">
+                            </div>
 
-            <!-- FOOTER -->
-            <div id="footer-container"></div>
+                            <!-- Image Upload (Optional for Edit) -->
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-1">Change Image (Optional)</label>
+                                <div class="mt-1 flex justify-center px-6 pt-5 pb-6 border-2 border-gray-300 border-dashed rounded-md hover:border-gray-400 transition-colors cursor-pointer relative">
+                                    <div class="space-y-1 text-center">
+                                        <i data-lucide="image" class="mx-auto h-12 w-12 text-gray-400"></i>
+                                        <div class="flex text-sm text-gray-600">
+                                            <label for="image-upload" class="relative cursor-pointer bg-white rounded-md font-medium text-indigo-600 hover:text-indigo-500 focus-within:outline-none">
+                                                <span>Upload a new file</span>
+                                                <input id="image-upload" name="image" type="file" class="sr-only" accept="image/*">
+                                            </label>
+                                            <p class="pl-1">to replace current one</p>
+                                        </div>
+                                        <p class="text-xs text-gray-500">PNG, JPG, GIF up to 5MB</p>
+                                        <p id="file-name" class="text-sm text-gray-900 font-medium mt-2 hidden"></p>
+                                    </div>
+                                </div>
+                            </div>
 
+                            <!-- Submit Button -->
+                            <div class="flex justify-end pt-4">
+                                <a href="/admin/productList" class="mr-4 px-4 py-2 border border-gray-300 rounded-md text-sm font-medium text-gray-700 hover:bg-gray-50 flex items-center justify-center">
+                                    Cancel
+                                </a>
+                                <button type="submit" class="px-6 py-2 bg-gray-900 text-white rounded-md text-sm font-medium hover:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-900 transition-all flex items-center">
+                                    <i data-lucide="save" class="w-4 h-4 mr-2"></i> Update Product
+                                </button>
+                            </div>
+
+                        </form>
+                    </div>
+
+                </main>
+
+                <!-- FOOTER -->
+                <div id="footer-container"></div>
+
+            </div>
         </div>
-    </div>
 
-    <!-- LAYOUT SCRIPT -->
-    <script src="/admin/Layout.js"></script>
+        <!-- LAYOUT SCRIPT -->
+        <script src="/admin/Layout.js"></script>
 
-    <!-- PAGE SPECIFIC SCRIPT -->
-    <script>
-        // --- Helper to fix image paths ---
-        function fixImagePath(path) {
-            if (!path) return '';
-            let cleanPath = path.replace(/\\/g, '/');
-            if (cleanPath.startsWith('http')) return cleanPath;
-            if (!cleanPath.startsWith('/')) cleanPath = '/' + cleanPath;
-            return cleanPath;
-        }
-
-        // --- 1. Load Product Data on Page Load ---
-        document.addEventListener('DOMContentLoaded', async () => {
-            // Get ID from URL query string (e.g., ?id=123)
-            const urlParams = new URLSearchParams(window.location.search);
-            const productId = urlParams.get('id');
-
-            if (!productId) {
-                // If running in preview mode or no ID, prevent redirect loop
-                console.warn("No product ID provided! (Preview Mode Active)");
-                // We won't redirect in preview to avoid the error you saw
-                return;
+        <!-- PAGE SPECIFIC SCRIPT -->
+        <script>
+            // --- Helper to fix image paths ---
+            function fixImagePath(path) {
+                if (!path) return '';
+                let cleanPath = path.replace(/\\/g, '/');
+                if (cleanPath.startsWith('http')) return cleanPath;
+                if (!cleanPath.startsWith('/')) cleanPath = '/' + cleanPath;
+                return cleanPath;
             }
 
-            try {
-                // Fetch product details
-                const response = await fetch(`/api/products/${productId}`);
-                if (!response.ok) throw new Error("Failed to fetch product");
-                
-                const product = await response.json();
+            // --- 1. Load Product Data on Page Load ---
+            document.addEventListener('DOMContentLoaded', async () => {
+                // Get ID from URL query string (e.g., ?id=123)
+                const urlParams = new URLSearchParams(window.location.search);
+                const productId = urlParams.get('id');
 
-                // Populate Form
-                document.getElementById('productId').value = product._id;
-                document.getElementById('name').value = product.name;
-                document.getElementById('price').value = product.price;
-                document.getElementById('category').value = product.category;
-                document.getElementById('shortDescription').value = product.name; 
-                document.getElementById('description').value = product.description;
-
-                // Show Current Image
-                if (product.image) {
-                    const imgContainer = document.getElementById('current-image-container');
-                    const imgEl = document.getElementById('current-image');
-                    imgEl.src = fixImagePath(product.image);
-                    imgContainer.classList.remove('hidden');
+                if (!productId) {
+                    // If running in preview mode or no ID, prevent redirect loop
+                    console.warn("No product ID provided! (Preview Mode Active)");
+                    // We won't redirect in preview to avoid the error you saw
+                    return;
                 }
 
-            } catch (error) {
-                console.error("Error loading product details:", error);
-                // Prevent redirect loop in preview
-                if (!window.location.href.includes("usercontent.goog")) {
-                     alert("Error loading product details.");
-                     // window.location.href = '/admin/productList'; // Commented out to prevent crash
+                try {
+                    // Fetch product details
+                    const response = await fetch(`/api/products/${productId}`);
+                    if (!response.ok) throw new Error("Failed to fetch product");
+                    
+                    const product = await response.json();
+
+                    // Populate Form
+                    document.getElementById('productId').value = product._id;
+                    document.getElementById('name').value = product.name;
+                    document.getElementById('price').value = product.price;
+                    document.getElementById('category').value = product.category;
+                    document.getElementById('shortDescription').value = product.name; 
+                    document.getElementById('description').value = product.description;
+
+                    // Show Current Image
+                    if (product.image) {
+                        const imgContainer = document.getElementById('current-image-container');
+                        const imgEl = document.getElementById('current-image');
+                        imgEl.src = fixImagePath(product.image);
+                        imgContainer.classList.remove('hidden');
+                    }
+
+                } catch (error) {
+                    console.error("Error loading product details:", error);
+                    // Prevent redirect loop in preview
+                    if (!window.location.href.includes("usercontent.goog")) {
+                        alert("Error loading product details.");
+                        // window.location.href = '/admin/productList'; // Commented out to prevent crash
+                    }
                 }
-            }
-        });
+            });
 
-        // --- 2. File Upload Preview ---
-        const fileInput = document.getElementById('image-upload');
-        const fileNameDisplay = document.getElementById('file-name');
+            // --- 2. File Upload Preview ---
+            const fileInput = document.getElementById('image-upload');
+            const fileNameDisplay = document.getElementById('file-name');
 
-        fileInput.addEventListener('change', (e) => {
-            const file = e.target.files[0];
-            if (file) {
-                fileNameDisplay.textContent = `Selected: ${file.name}`;
-                fileNameDisplay.classList.remove('hidden');
-            } else {
-                fileNameDisplay.classList.add('hidden');
-            }
-        });
-
-        // --- 3. Update Submission Handler ---
-        const form = document.getElementById('edit-product-form');
-
-        form.addEventListener('submit', async (e) => {
-            e.preventDefault();
-            const productId = document.getElementById('productId').value;
-            
-            if (!productId) {
-                alert("Cannot update: Missing Product ID");
-                return;
-            }
-
-            const formData = new FormData(form);
-
-            const submitBtn = form.querySelector('button[type="submit"]');
-            const originalBtnText = submitBtn.innerHTML;
-            submitBtn.disabled = true;
-            submitBtn.innerHTML = `<i data-lucide="loader-2" class="w-4 h-4 mr-2 animate-spin"></i> Updating...`;
-            if(window.lucide) window.lucide.createIcons();
-
-            try {
-                // Note: You need to implement PUT /api/products/:id in your backend
-                const response = await fetch(`/api/products/${productId}`, {
-                    method: 'PUT',
-                    body: formData
-                });
-
-                const result = await response.json();
-
-                if (response.ok) {
-                    alert('Product updated successfully!');
-                    // Use window.location.assign for safer redirect
-                    window.location.assign('/admin/productList');
+            fileInput.addEventListener('change', (e) => {
+                const file = e.target.files[0];
+                if (file) {
+                    fileNameDisplay.textContent = `Selected: ${file.name}`;
+                    fileNameDisplay.classList.remove('hidden');
                 } else {
-                    throw new Error(result.error || 'Failed to update product');
+                    fileNameDisplay.classList.add('hidden');
+                }
+            });
+
+            // --- 3. Update Submission Handler ---
+            const form = document.getElementById('edit-product-form');
+
+            form.addEventListener('submit', async (e) => {
+                e.preventDefault();
+                const productId = document.getElementById('productId').value;
+                
+                if (!productId) {
+                    alert("Cannot update: Missing Product ID");
+                    return;
                 }
 
-            } catch (error) {
-                console.error('Error:', error);
-                alert(`Error: ${error.message}`);
-            } finally {
-                submitBtn.disabled = false;
-                submitBtn.innerHTML = originalBtnText;
-                if(window.lucide) window.lucide.createIcons();
-            }
-        });
-    </script>
+                const formData = new FormData(form);
 
-</body>
-</html>
+                const submitBtn = form.querySelector('button[type="submit"]');
+                const originalBtnText = submitBtn.innerHTML;
+                submitBtn.disabled = true;
+                submitBtn.innerHTML = `<i data-lucide="loader-2" class="w-4 h-4 mr-2 animate-spin"></i> Updating...`;
+                if(window.lucide) window.lucide.createIcons();
+
+                try {
+                    // Note: You need to implement PUT /api/products/:id in your backend
+                    const response = await fetch(`/api/products/${productId}`, {
+                        method: 'PUT',
+                        body: formData
+                    });
+
+                    const result = await response.json();
+
+                    if (response.ok) {
+                        alert('Product updated successfully!');
+                        // Use window.location.assign for safer redirect
+                        window.location.assign('/admin/productList');
+                    } else {
+                        throw new Error(result.error || 'Failed to update product');
+                    }
+
+                } catch (error) {
+                    console.error('Error:', error);
+                    alert(`Error: ${error.message}`);
+                } finally {
+                    submitBtn.disabled = false;
+                    submitBtn.innerHTML = originalBtnText;
+                    if(window.lucide) window.lucide.createIcons();
+                }
+            });
+        </script>
+
+    </body>
+    </html>
