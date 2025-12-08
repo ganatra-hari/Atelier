@@ -84,12 +84,12 @@ document.addEventListener('DOMContentLoaded', () => {
         if (!shopProductGrid && !homeProductGrid) return;
 
         // Mock data fallback in case API fails (for demonstration)
-        const mockData = [
-            { _id: '1', name: 'Minimalist Chair', category: 'Furniture', price: 12500, image: 'https://images.unsplash.com/photo-1598300042247-d088f8ab3a91?auto=format&fit=crop&q=80&w=800', description: 'Ergonomic design meets modern aesthetics.' },
-            { _id: '2', name: 'Ceramic Vase', category: 'Decor', price: 2400, image: 'https://images.unsplash.com/photo-1581783342308-f792dbdd27c5?auto=format&fit=crop&q=80&w=800', description: 'Handcrafted ceramic vase with matte finish.' },
-            { _id: '3', name: 'Linen Lamp', category: 'Lighting', price: 5600, image: 'https://images.unsplash.com/photo-1507473888900-52a1b2d8f7d3?auto=format&fit=crop&q=80&w=800', description: 'Soft ambient lighting for your living room.' },
-            { _id: '4', name: 'Oak Table', category: 'Furniture', price: 35000, image: 'https://images.unsplash.com/photo-1577140917170-285929fb55b7?auto=format&fit=crop&q=80&w=800', description: 'Solid oak coffee table with natural finish.' }
-        ];
+        // const mockData = [
+        //     { _id: '1', name: 'Minimalist Chair', category: 'Furniture', price: 12500, image: 'https://images.unsplash.com/photo-1598300042247-d088f8ab3a91?auto=format&fit=crop&q=80&w=800', description: 'Ergonomic design meets modern aesthetics.' },
+        //     { _id: '2', name: 'Ceramic Vase', category: 'Decor', price: 2400, image: 'https://images.unsplash.com/photo-1581783342308-f792dbdd27c5?auto=format&fit=crop&q=80&w=800', description: 'Handcrafted ceramic vase with matte finish.' },
+        //     { _id: '3', name: 'Linen Lamp', category: 'Lighting', price: 5600, image: 'https://images.unsplash.com/photo-1507473888900-52a1b2d8f7d3?auto=format&fit=crop&q=80&w=800', description: 'Soft ambient lighting for your living room.' },
+        //     { _id: '4', name: 'Oak Table', category: 'Furniture', price: 35000, image: 'https://images.unsplash.com/photo-1577140917170-285929fb55b7?auto=format&fit=crop&q=80&w=800', description: 'Solid oak coffee table with natural finish.' }
+        // ];
 
         if (shopProductGrid) {
             shopProductGrid.innerHTML = `<div class="col-span-full flex justify-center py-20"><div class="animate-spin rounded-full h-10 w-10 border-b-2 border-gray-900"></div></div>`;
