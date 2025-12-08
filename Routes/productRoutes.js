@@ -1,33 +1,44 @@
 const express = require('express');
 const router = express.Router();
 const multer = require('multer');
-const path = require('path');
-const fs = require('fs'); // Added to help delete old images
 const Product = require('../Models/productModel');
 
-// --- 1. MULTER CONFIGURATION ---
-const storage = multer.diskStorage({
-    destination: function (req, file, cb) {
-        cb(null, 'uploads/');
-    },
-    filename: function (req, file, cb) {
-        const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1E9);
-        cb(null, uniqueSuffix + path.extname(file.originalname)); 
-    }
+// --- 1. CLOUDINARY CONFIGURATION ---
+const cloudinary = require('cloudinary').v2;
+const { CloudinaryStorage } = require('multer-storage-cloudinary');
+require('dotenv').config(); // Load environment variables
+
+// Configure Cloudinary with keys from .env
+cloudinary.config({
+    cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
+    api_key: process.env.CLOUDINARY_API_KEY,
+    api_secret: process.env.CLOUDINARY_API_SECRET
 });
+
+// Configure Storage Engine
+const storage = new CloudinaryStorage({
+    cloudinary: cloudinary,
+    params: {
+        folder: 'shopping-app', // Folder name in your Cloudinary Dashboard
+        allowed_formats: ['jpg', 'png', 'jpeg', 'webp'],
+    },
+});
+
 const upload = multer({ storage: storage });
 
 
 // --- 2. CREATE PRODUCT (POST /add) ---
 router.post('/add', upload.single('image'), async (req, res) => {
     try {
-        const imageUrl = req.file ? `/uploads/${req.file.filename}` : "";
+        // CHANGED: Cloudinary returns the full URL in file.path (not filename)
+        const imageUrl = req.file ? req.file.path : "";
+
         const newProduct = await Product.create({
             name: req.body.name, 
             description: req.body.description,
             price: req.body.price,
             category: req.body.category,
-            image: imageUrl
+            image: imageUrl // Saves "https://res.cloudinary.com/..."
         });
         res.status(201).json({ message: "Product added", product: newProduct });
     } catch (error) {
@@ -47,8 +58,7 @@ router.get('/', async (req, res) => {
 });
 
 
-// --- 4. [NEW] GET SINGLE PRODUCT (GET /:id) --- 
-// This is used by the Edit Page to pre-fill the form
+// --- 4. GET SINGLE PRODUCT (GET /:id) --- 
 router.get('/:id', async (req, res) => {
     try {
         const product = await Product.findById(req.params.id);
@@ -62,13 +72,12 @@ router.get('/:id', async (req, res) => {
 });
 
 
-// --- 5. [NEW] UPDATE PRODUCT (PUT /:id) ---
-// This is used when you click "Update Product"
+// --- 5. UPDATE PRODUCT (PUT /:id) ---
 router.put('/:id', upload.single('image'), async (req, res) => {
     try {
         const productId = req.params.id;
         
-        // 1. Find the existing product first
+        // 1. Find the existing product
         const oldProduct = await Product.findById(productId);
         if (!oldProduct) {
             return res.status(404).json({ error: "Product not found" });
@@ -84,17 +93,12 @@ router.put('/:id', upload.single('image'), async (req, res) => {
 
         // 3. Handle Image Update
         if (req.file) {
-            // If user uploaded a NEW image, use it
-            updateData.image = `/uploads/${req.file.filename}`;
+            // If user uploaded a NEW image, Cloudinary automatically uploads it
+            // and gives us the new URL here:
+            updateData.image = req.file.path;
             
-            // Optional: Delete the OLD image file to save space
-            // (Only if it exists and isn't a placeholder)
-            if (oldProduct.image && !oldProduct.image.includes('placehold.co')) {
-                const oldPath = path.join(__dirname, '..', oldProduct.image);
-                fs.unlink(oldPath, (err) => {
-                    if (err) console.error("Could not delete old image:", err);
-                });
-            }
+            // Note: We removed the fs.unlink logic because the files 
+            // are no longer on your local computer.
         }
 
         // 4. Update Database
@@ -108,11 +112,14 @@ router.put('/:id', upload.single('image'), async (req, res) => {
 });
 
 
-// --- 6. [NEW] DELETE PRODUCT (DELETE /:id) ---
+// --- 6. DELETE PRODUCT (DELETE /:id) ---
 router.delete('/:id', async (req, res) => {
     try {
         const product = await Product.findByIdAndDelete(req.params.id);
         if (!product) return res.status(404).json({ error: "Product not found" });
+        
+        // Optional Future Step: You can add logic here to delete the image 
+        // from Cloudinary using cloudinary.uploader.destroy(public_id)
         
         res.json({ message: "Product deleted successfully" });
     } catch (error) {
