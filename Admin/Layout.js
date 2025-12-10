@@ -59,3 +59,22 @@ document.addEventListener("DOMContentLoaded", async () => {
         highlightActiveLink("nav-home");
     }
 });
+
+    document.addEventListener('DOMContentLoaded', async () => {
+        try {
+            const response = await fetch('/api/products/stats');
+            if (!response.ok) throw new Error('Failed to fetch stats');
+            
+            const data = await response.json();
+
+            // Update DOM elements
+            document.getElementById('dashboard-products').textContent = data.totalProducts;
+            document.getElementById('dashboard-revenue').textContent = '₹' + data.totalRevenue.toLocaleString('en-IN'); 
+            document.getElementById('dashboard-orders').textContent = data.activeOrders;
+
+        } catch (error) {
+            console.error(error);
+            document.getElementById('dashboard-products').textContent = '-';
+            document.getElementById('dashboard-revenue').textContent = '-';
+        }
+    });

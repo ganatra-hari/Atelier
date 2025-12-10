@@ -71,6 +71,36 @@ router.get('/:id', async (req, res) => {
     }
 });
 
+// --- [NEW] GET DASHBOARD STATS ---
+// MUST be placed BEFORE router.get('/:id')
+router.get('/stats', async (req, res) => {
+    try {
+        // 1. Count total products
+        const totalProducts = await Product.countDocuments();
+        
+        // 2. Sum up the price of all products (Inventory Value)
+        const stats = await Product.aggregate([
+            {
+                $group: {
+                    _id: null,
+                    totalValue: { $sum: "$price" } // Sums the 'price' field
+                }
+            }
+        ]);
+        
+        const totalRevenue = stats.length > 0 ? stats[0].totalValue : 0;
+
+        // 3. Send data
+        res.json({
+            totalProducts: totalProducts,
+            totalRevenue: totalRevenue,
+            activeOrders: 0 // Placeholder until you build an Order System
+        });
+    } catch (error) {
+        res.status(500).json({ error: error.message });
+    }
+});
+
 
 // --- 5. UPDATE PRODUCT (PUT /:id) ---
 router.put('/:id', upload.single('image'), async (req, res) => {
